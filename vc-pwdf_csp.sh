@@ -48,6 +48,7 @@ y
 y
 ref_structure.cif
 15
+y
 
 "
 read -p "would you like to continue with manual entry? [y/n]: " man
@@ -210,6 +211,8 @@ echo "$V_omin $V_omax"
 echo "$a_omin $a_omax ; $b_omin $b_omax ; $c_omin $c_omax" 
 # testing end
 
+# toggle space group screening on or off
+read -p "would you like to screen structures by space group? [y/n]: " spgrp_chk
 
 ### Step 4:  FILTERING THE STRUCTURES
 # make folders and files for filtering and logs
@@ -295,18 +298,28 @@ do
 # compare axes lengths			
 					echo "Cell 2 axes lengths are within $dev% of Cell 1 lengths" 
 					echo "Cell 2 axes lengths are within $dev% of Cell 1 lengths" >> out.log
-# compare space groups		
-					if [ $spgrp_n -eq $spgrp ]
+# compare space groups if requested		
+					if [ ${spgrp_chk,,} = y ]
 					then
-						echo "both structures are $spgrp_name"
-						echo "both structures are $spgrp_name" >> out.log
+
+						if [ $spgrp_n -eq $spgrp ]
+						then
+							echo "both structures are $spgrp_name"
+							echo "both structures are $spgrp_name" >> out.log
+							echo "$file $a $b $c $alpha $beta $gamma $V $CS $spgrp_name" >> hits_Vlist 
+							echo -n "$file " >> hits/powdiff.cri
+							mv $file hits/$file
+						else
+							echo "structures are different space groups"
+							echo "structures are different space groups" >> out.log
+							echo  "$file $a $b $c $alpha $beta $gamma $V $CS $spgrp_name" >> neg_Vlist 
+						fi
+					else
+						echo "space group not considered"
+						echo "space group not considered" >> out.log
 						echo "$file $a $b $c $alpha $beta $gamma $V $CS $spgrp_name" >> hits_Vlist 
 						echo -n "$file " >> hits/powdiff.cri
 						mv $file hits/$file
-					else
-						echo "structures are different space groups"
-						echo "structures are different space groups" >> out.log
-						echo  "$file $a $b $c $alpha $beta $gamma $V $CS $spgrp_name" >> neg_Vlist 
 					fi
 				else
 					echo "Cell 2 axes lengths are not within $dev% of Cell 1 lengths" 
@@ -740,12 +753,15 @@ else
 	($current_dir)	
 
 	"
+	pwdf_no=1
 	for comparison in `cat vc_hold.lst`
 	do
 		echo "compare $ref $comparison" | critic2 -q > powdiff.cro
+		echo "POWDIFF comparison $pwdf_no"
 	        # 1 - make a file with matching structures
 	        echo -n "$comparison    " >> result_out.lst
 	        grep DIFF powdiff.cro | awk '{print$4}' | tail -1 >> result_out.lst
+		((pwdf_no++))
 	done
 	cat result_out.lst | sort -k2 -g > ordered_powdiff_VC.txt
        	# 2 - make a file of the structure file names to CONV with DMACRYS
