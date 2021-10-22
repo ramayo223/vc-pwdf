@@ -9,7 +9,7 @@ Use of this program requires full installation of critic2 (https://aoterodelaroz
 ------------------------------------------------------------
 VC-PWDF-CSP.SH
 
-It is recommended that the user start in a fresh directory containing only the target structure (ref.cif), the concatenated structure file containing allstructures that will be compared to the target (nest.cif), and an input instruction file, if desired (input_file.in).
+It is recommended that the user start in a fresh directory containing only the target structure (ref.cif), the concatenated structure file containing all structures that will be compared to the target (nest.cif), and an input instruction file, if desired (input_file.in).
 
 The code is interactive and will ask the user for the following information, in this order:
 1) "would you like to continue with manual entry? [y/n]: "
@@ -61,4 +61,11 @@ $ vc-pwdf-2comp.sh < input_file.in
 
 
 
+----------------------------------------------------------
+Troubleshooting
+
+First 3 checks:
+1. ensure all cif files are properly formatted
+2. ensure your split pattern occurs only once-per-structure in the concatenated cif
+3. ensure critic2 can be called by the script
 
