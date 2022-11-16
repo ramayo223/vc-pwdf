@@ -3,8 +3,14 @@ Description and example of use: https://doi.org/10.1039/D1CE01058A
 If you find this code useful, please cite: Mayo, R.A. and Johnson, E.R. CrystEngComm, 2021, 23, 7118-7131
 
 NOTE: THIS VERSION IS NOW OUTDATED. THE UPDATED VERSION HAS BEEN INTEGRATED WITH CRITIC2 https://aoterodelaroza.github.io/critic2/
-FOR BEST RESULTS, PLEASE USE THE NEW VERSION
+FOR BEST RESULTS, PLEASE USE THE NEW VERSION. NEW REFERENCE:
+DOI	https://doi.org/10.1039/D2CE01080A
 
+
+
+
+
+##########################################################################
 This script is written in bash and should be run from a Linux command line
 Use of this program requires full installation of critic2 (https://aoterodelaroza.github.io/critic2/)
 
