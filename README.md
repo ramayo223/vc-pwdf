@@ -22,7 +22,7 @@ theory/DFT computational methods. Discrepencies in peak positions due to thermal
 cell dimensions of the chosen reference structure. If the two structures are the same form, a coincident unit cell 
 description will be found and the deformation will bring the two into alignment, yielding a low VC-PWDF score.
 
- ![alt text](https://github.com/ramayo223/vc-pwdf/vc-pwdf.png "VC-PWDF results overlay")
+ ![VC-PWDF results overlay](https://github.com/ramayo223/vc-pwdf/vc-pwdf.png)
   
 Refer to the following articles for details on the development, abilities, and applications of the VC-PWDF method:
 - identification of target crystal structures in CSP landscapes [CrystEngComm, 2021, 23, 7118](https://pubs.rsc.org/en/content/articlehtml/2021/ce/d1ce01058a), 
