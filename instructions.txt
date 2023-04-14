@@ -1,0 +1,67 @@
+This document outlines the steps for running the bash scripts vc-pwdf_csp.sh and vc-pwdf_2comp.sh
+
+The scripts are written in bash, are run from a Linux command line, and require full installation of critic2 (https://aoterodelaroza.github.io/critic2/)
+
+------------------------------------------------------------
+VC-PWDF-CSP.SH
+
+It is recommended that the user start in a fresh directory containing only the target structure (ref.cif), the concatenated structure file containing all structures that will be compared to the target (nest.cif), and an input instruction file, if desired (input_file.in).
+
+The code is interactive and will ask the user for the following information, in this order:
+1) "would you like to continue with manual entry? [y/n]: "
+2) "File containing nested crystal information [*.cif]: "
+3) "would you like to use the default pattern for cif parsing (data_)? [y/n]: "
+	if n) "enter desired parsing pattern: "
+4) "Do you have a .cif of your reference structure? [y/n] " 
+	if y) "filename [.cif]: " 
+5) "Deviation tolerance (in percent) from reference unit cell parameters (volume, lengths) [15]: "
+6)  "would you like to screen structures by space group? [y/n]: " 
+
+recommended structure of input_file.in:
+y
+(your_nested_cif).cif
+y
+y
+(your_target).cif
+15
+y
+
+to run non-interactively:
+$ vc-pwdf-csp.sh < input_file.in
+
+-----------------------------------------------------------
+VC-PWDF-2COMP.SH
+
+It is recommended that the user start in a fresh directory containing only the target structure (ref.cif), the structure you wish to compare with the target (compaere.cif), and an input instruction file, if desired (input_file.in).
+
+The code is interactive and will ask the user for the following information, in this order:
+1) "Structure 1 [.cif]: "
+2) "Structure 2 [.cif]: "
+3) "Would you like to convert the structures to their Niggli reduced cell (recommended)? [y/n] " 
+IF space groups are not the same
+	 "the two structures are in different space groups, would you like to continue? [y/n]"
+4) "Do you want to hold one structure constant to compare against?[y/n]"
+	y) [(ref)/(compare)]
+	n) Structure with largest unit cell will be used as reference cell for comparison
+
+
+
+recommended structure of input_file.in (assuming same space group):
+ref.cif
+compare.cif
+y
+n
+
+to run non-interactively:
+$ vc-pwdf-2comp.sh < input_file.in
+
+
+
+----------------------------------------------------------
+Troubleshooting
+
+First 3 checks:
+1. ensure all cif files are properly formatted
+2. ensure your split pattern occurs only once-per-structure in the concatenated cif
+3. ensure critic2 can be called by the script
+
