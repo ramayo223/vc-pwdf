@@ -12,7 +12,7 @@ diffractograms of the two structures in order to yield a dissimilarity value usi
 function (ie. a measure of peak overlap, 
 [J. Comput. Chem., 2001, 22, 273](https://doi.org/10.1002/1096-987X(200102)22:3%3C273::AID-JCC1001%3E3.0.CO;2-0)). The value yielded by the method
 is a number between 0 (identical) and 1 (completely dissimilar). We have called this value the "VC-PWDF score",
-and a score \< 0.03 indicates considerable similarity and a probable match; however, user discretion is 
+and [a score \< 0.03 indicates considerable similarity and a probable match](https://pubs.rsc.org/en/content/articlehtml/2022/ce/d2ce01080a); however, user discretion is 
 recommended regarding a cutoff for classifying a "match". 
 
 The protocol is specifically 
